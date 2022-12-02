@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form Validation</title>
+</head>
+<body>
+<form action="/cgi-bin/test.cgi" name="myForm"
+      onsubmit="return(validate());">
+    <table cellspacing="1.5" cellpadding="2" border="2">
+        <tr>
+            <td align="right">Name</td>
+
+            <td><input type="text" name="Name" /></td>
+        </tr>
+        <tr>
+            <td align="right">EMail</td>
+            <td><input type="text" name="EMail" /></td>
+        </tr>
+        <tr>
+            <td align="right">Country</td>
+            <td>
+                <select name="Country">
+                    <option value="-1" selected>[choose coutry]</option>
+                    <option value="1">Kenya/option>
+                    <option value="2">Tanzania</option>
+                    <option value="3">Uganda</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td align="right"></td>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+<script>
+    function validate()
+    {
+        if( document.myForm.Name.value == "" )
+        {
+            alert( "Please enter your name!" );
+            document.myForm.Name.focus() ;
+            return false;
+        }
+        if( document.myForm.EMail.value == "" )
+        {
+            alert( "Please enter your Email!" );
+            document.myForm.EMail.focus() ;
+            return false;
+        }
+        if( document.myForm.Country.value == "-1" )
+        {
+            alert( "Please choose your country!" );
+            return false;
+        }
+        return( true );
+    }
+
+    function validateEmail()
+    {
+        var emailID = document.myForm.EMail.value;
+        atpos = emailID.indexOf("@");
+        dotpos = emailID.lastIndexOf(".");
+        if (atpos < 1 || ( dotpos - atpos < 2 ))
+        {
+            alert("Please enter a valid email address")
+            document.myForm.EMail.focus() ;
+            return false;
+        }
+        return true;
+    }
+    //-->
+</script>
+</body>
+</html>
